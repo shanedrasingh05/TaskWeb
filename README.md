@@ -22,7 +22,7 @@ To set up the backend, run the following commands:
 
 ```sh
 # Clone the repository
-git clone <https://github.com/shanedrasingh05/TaskWeb>
+git clone https://github.com/shanedrasingh05/TaskWeb
 
 # Navigate to the backend folder
 cd backend
