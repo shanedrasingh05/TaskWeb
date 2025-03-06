@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting API</title>
+</head>
+<body>
+    <h1>Greeting App</h1>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button id="greetButton">Get Greeting</button>
+    <p id="responseMessage"></p>
+
+    <script>
+        document.getElementById('greetButton').addEventListener('click', async () => {
+            const name = document.getElementById('nameInput').value;
+            const responseMessage = document.getElementById('responseMessage');
+
+            if (!name) {
+                responseMessage.textContent = 'Please enter your name.';
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/greet?name=${name}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    responseMessage.textContent = data.message;
+                } else {
+                    responseMessage.textContent = data.error;
+                }
+            } catch (error) {
+                responseMessage.textContent = 'Error communicating with the API.';
+            }
+        });
+    </script>
+</body>
+</html>
